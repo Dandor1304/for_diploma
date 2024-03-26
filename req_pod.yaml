@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: request
+spec:
+  restartPolicy: Never
+  containers:
+  - name: request
+    image: dandor22/for_req:k8s
+
