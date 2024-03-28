@@ -6,4 +6,4 @@ spec:
   restartPolicy: Never
   containers:
   - name: timestamp
-    image: dandor22/times_and_env:faster
+    image: dandor22/times_and_env:new
