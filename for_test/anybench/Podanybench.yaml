@@ -6,9 +6,9 @@ spec:
   restartPolicy: Never      
   containers:
   - name: anybench
-    image: dandor22/anybenchtest:latest
+    image: dandor22/anybenchtest:multi
     command: ["/bin/sh", "-c"]
-    args: ["sleep 3000 && /home/test/anybench/src/run.sh && cp -r results/amd64 /mnt/anybench/$(date +%s)"]
+    args: ["cd /home/test/anybench/src && /home/test/anybench/src/run.sh && cp -r /home/test/anybench/results/amd64 /mnt/anybench/$(date +%s)"]
     volumeMounts:
     - name: hostpath-volume
       mountPath: /mnt/anybench
