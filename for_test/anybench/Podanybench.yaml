@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: anybench
+spec:
+  restartPolicy: Never      
+  containers:
+  - name: anybench
+    image: dandor22/anybenchtest:latest
+    command: ["/bin/sh", "-c"]
+    args: ["sleep 3000 && /home/test/anybench/src/run.sh && cp -r results/amd64 /mnt/anybench/$(date +%s)"]
+    volumeMounts:
+    - name: hostpath-volume
+      mountPath: /mnt/anybench
+  volumes:
+  - name: hostpath-volume
+    hostPath:
+      path: /mnt/anybench
+      type: DirectoryOrCreate
