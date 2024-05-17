@@ -3,17 +3,18 @@ kind: Pod
 metadata:
   name: timestamp
 spec:
-  restartPolicy: Never      
+  restartPolicy: Never
+  runtimeClassName: runc
   containers:
   - name: timestamp
     image: ubuntu:20.04
     command: ["/bin/bash", "-c"]
-    args: ["date +%s.%N >> /mnt/run_container/run_container_output && sleep 10"]
+    args: ["date +%s.%N >> /mnt/run_container/runc/run_container_output && sleep 10"]
     volumeMounts:
     - name: hostpath-volume
-      mountPath: /mnt/run_container
+      mountPath: /mnt/run_container/runc
   volumes:
   - name: hostpath-volume
     hostPath:
-      path: /mnt/run_container
+      path: /mnt/run_container/runc
       type: DirectoryOrCreate

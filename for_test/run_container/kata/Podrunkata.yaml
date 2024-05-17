@@ -9,12 +9,12 @@ spec:
   - name: timestamp
     image: ubuntu:20.04
     command: ["/bin/bash", "-c"]
-    args: ["date +%s.%N >> /mnt/run_container/run_container_output && sleep 10"]
+    args: ["date +%s.%N >> /mnt/run_container/kata/run_container_output && sleep 10"]
     volumeMounts:
     - name: hostpath-volume
-      mountPath: /mnt/run_container
+      mountPath: /mnt/run_container/kata
   volumes:
   - name: hostpath-volume
     hostPath:
-      path: /mnt/run_container
+      path: /mnt/run_container/kata
       type: DirectoryOrCreate
