@@ -4,17 +4,18 @@ metadata:
   name: iperf-client
 spec:
   restartPolicy: Never
+  runtimeClassName: kata-qemu
   containers:
   - name: iperf-client
     image: dandor22/iperf3
     command: ["/bin/sh","-c"]
-    args: ["iperf3 -c 10.233.65.163 /mnt/iperf3/$(date +%T).txt"]
+    args: ["iperf3 -c 10.233.75.59 > /mnt/iperf3/kata/$(date +%s)_kata.txt"]
     ports:
     volumeMounts:
     - name: hostpath-volume
-      mountPath: /mnt/iperf3
+      mountPath: /mnt/iperf3/kata
   volumes:
   - name: hostpath-volume
     hostPath:
-      path: /mnt/iperf3
+      path: /mnt/iperf3/kata
       type: DirectoryOrCreate

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iperf-client
+spec:
+  restartPolicy: Never
+  runtimeClassName: runc
+  containers:
+  - name: iperf-client
+    image: dandor22/iperf3
+    command: ["/bin/sh","-c"]
+    args: ["iperf3 -c 10.233.75.63 > /mnt/iperf3/runc/$(date +%s).txt"]
+    ports:
+    volumeMounts:
+    - name: hostpath-volume
+      mountPath: /mnt/iperf3/runc
+  volumes:
+  - name: hostpath-volume
+    hostPath:
+      path: /mnt/iperf3/runc
+      type: DirectoryOrCreate
