@@ -1,9 +1,10 @@
 FROM ubuntu:20.04 as build
 WORKDIR /home/test
-RUN apt update && apt install clang -y && apt install git -y && git clone --recurse-submodules https://github.com/EntityFX/anybench.git
+RUN apt update && apt install numactl -y && apt install libomp5 -y &&apt install clang -y && apt install git -y && git clone --recurse-submodules https://github.com/EntityFX/anybench.git
 WORKDIR /home/test/anybench/src
 RUN ./make-amd64.sh
 
 FROM ubuntu:20.04
+RUN apt update && apt install numactl -y && apt install libomp5 -y  
 COPY --from=build /home/test/anybench /home/test/anybench
 WORKDIR /home/test/anybench/src

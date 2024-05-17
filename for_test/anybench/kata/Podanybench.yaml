@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: anybench
+spec:
+  restartPolicy: Never
+  runtimeClassName: kata-qemu  
+  containers:
+  - name: anybench
+    image: dandor22/anybenchtest:multi2
+    command: ["/bin/sh", "-c"]
+    args: ["cd /home/test/anybench/src && /home/test/anybench/src/run.sh && cp -r /home/test/anybench/results/amd64 /mnt/anybench/kata/$(date +%s)"]
+    volumeMounts:
+    - name: hostpath-volume
+      mountPath: /mnt/anybench/kata
+  volumes:
+  - name: hostpath-volume
+    hostPath:
+      path: /mnt/anybench/kata
+      type: DirectoryOrCreate

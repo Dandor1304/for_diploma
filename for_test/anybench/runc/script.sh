@@ -2,7 +2,7 @@
 podname=anybench
 
 function create_pod() {
-  kubectl apply -f ~/for_diploma/for_test/anybench/Podanybench.yaml
+  kubectl apply -f ~/for_diploma/for_test/anybench/runc/Podanybench.yaml
 }
 
 function wait_pod_completed() {
@@ -12,14 +12,14 @@ function wait_pod_completed() {
     if [ $pod_status == "Completed" ] || [ $pod_status == "Failed" ]; then
       break
     else
-      sleep 300
+      sleep 180
     fi
 
   done
 }
 
 function delete_pod() { 
-  kubectl delete -f ~/for_diploma/for_test/anybench/Podanybench.yaml
+  kubectl delete -f ~/for_diploma/for_test/anybench/runc/Podanybench.yaml
 }
 
 for i in {1..3}; do
