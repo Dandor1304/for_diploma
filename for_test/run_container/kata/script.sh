@@ -1,6 +1,6 @@
 #!/bin/bash
 namepod="Podrunkata"
-for i in {1..10}; do
+for i in {1..1000}; do
     current_time_1=$(date +%s.%N)
     kubectl apply -f $namepod.yaml
     current_time_2=$(date +%s.%N)

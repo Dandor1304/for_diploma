@@ -22,7 +22,7 @@ function delete_pod() {
   kubectl delete -f ~/for_diploma/for_test/anybench/kata/Podanybench.yaml
 }
 
-for i in {1..3}; do
+for i in {1..100}; do
   create_pod
   wait_pod_completed
   delete_pod
