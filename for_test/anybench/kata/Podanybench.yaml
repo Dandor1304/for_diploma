@@ -10,6 +10,7 @@ spec:
     image: dandor22/anybenchtest:multi2
     command: ["/bin/sh", "-c"]
     args: ["cd /home/test/anybench/src && /home/test/anybench/src/run.sh && cp -r /home/test/anybench/results/amd64 /mnt/anybench/kata/$(date +%s)"]
+    imagePullPolicy: IfNotPresent
     volumeMounts:
     - name: hostpath-volume
       mountPath: /mnt/anybench/kata

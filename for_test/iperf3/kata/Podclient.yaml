@@ -10,6 +10,7 @@ spec:
     image: dandor22/iperf3
     command: ["/bin/sh","-c"]
     args: ["iperf3 -c 10.233.75.43 > /mnt/iperf3/kata/$(date +%s)_kata.txt"]
+    imagePullPolicy: IfNotPresent
     ports:
     volumeMounts:
     - name: hostpath-volume

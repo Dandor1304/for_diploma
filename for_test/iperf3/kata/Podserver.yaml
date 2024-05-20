@@ -9,6 +9,7 @@ spec:
   - name: iperf-server
     image: dandor22/iperf3 
     args: ["iperf3","-s"]
+    imagePullPolicy: IfNotPresent
     ports:
     - containerPort: 5201
     volumeMounts:

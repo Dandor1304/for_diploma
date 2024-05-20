@@ -10,6 +10,7 @@ spec:
     image: ubuntu:20.04
     command: ["/bin/bash", "-c"]
     args: ["date +%s.%N >> /mnt/run_container/kata/run_container_output && sleep 10"]
+    imagePullPolicy: IfNotPresent
     volumeMounts:
     - name: hostpath-volume
       mountPath: /mnt/run_container/kata
